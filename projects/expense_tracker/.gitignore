@@ -1,0 +1,4 @@
+storage/__pycache__/
+services/__pycache__/
+models/__pycache__/
+expenses.db
