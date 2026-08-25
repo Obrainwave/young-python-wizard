@@ -125,9 +125,4 @@ This project is part of the **Young Python Wizard** learning repository and is f
 
 ---
 
-## Full Source Code
-
-The complete code is available on GitHub:  
-[https://github.com/Obrainwave/young-python-wizard/projects/password_generator](https://github.com/Obrainwave/young-python-wizard/projects/password_generator)
-
 Happy coding! 🐍🔒

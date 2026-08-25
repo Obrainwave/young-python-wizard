@@ -138,13 +138,6 @@ Here are some ideas to enhance the application and practise your skills:
 
 ---
 
-## Full Source Code
-
-The complete code is available on GitHub:  
-[https://github.com/Obrainwave/young-python-wizard/projects/quiz_application](https://github.com/Obrainwave/young-python-wizard/projects/quiz_application)
-
----
-
 ## License
 
 This project is part of the **Young Python Wizard** learning repository and is free to use for personal and educational purposes.
