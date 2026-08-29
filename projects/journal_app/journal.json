@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "title": "First Day",
+    "content": "Today I started learning Python!",
+    "timestamp": "2026-08-29T14:15:39",
+    "tags": [
+      "python",
+      "learning"
+    ]
+  }
+]
