@@ -1,4 +1,3 @@
-from typing import Dict, List
 from core.models import TokenSequence
 
 
@@ -7,7 +6,7 @@ class DictionaryTokenizer:
 
     def __init__(self) -> None:
         # Vocabulary mapping tokens to discrete numerical IDs
-        self.vocab: Dict[str, int] = {
+        self.vocab: dict[str, int] = {
             "<PAD>": 0,
             "<UNK>": 1,
             "system": 2,
@@ -19,7 +18,7 @@ class DictionaryTokenizer:
             "error": 8,
             "detected": 9,
         }
-        self.inverse_vocab: Dict[int, str] = {v: k for k, v in self.vocab.items()}
+        self.inverse_vocab: dict[int, str] = {v: k for k, v in self.vocab.items()}
 
     def encode(self, text: str) -> TokenSequence:
         """Converts raw input string into token IDs."""
@@ -31,7 +30,7 @@ class DictionaryTokenizer:
 
         return TokenSequence(raw_text=text, token_ids=token_ids)
 
-    def decode(self, token_ids: List[int]) -> str:
+    def decode(self, token_ids: list[int]) -> str:
         """Decodes integer token IDs back into string space."""
         words = [self.inverse_vocab.get(tid, "<UNK>") for tid in token_ids]
         return " ".join(words)

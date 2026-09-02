@@ -1,6 +1,5 @@
 import math
 import random
-from typing import List, Dict, Tuple
 from core.models import SamplingConfig, PredictionOutput
 from services.tokenizer import DictionaryTokenizer
 
@@ -20,7 +19,7 @@ class LanguageModelEngine:
             8: {9: 3.5},                 # "error" -> "detected"
         }
 
-    def _truncate_context(self, token_ids: List[int], max_window: int) -> List[int]:
+    def _truncate_context(self, token_ids: list[int], max_window: int) -> list[int]:
         """Enforces context window boundaries by keeping only the most recent N tokens."""
         if len(token_ids) > max_window:
             return token_ids[-max_window:]
@@ -41,7 +40,7 @@ class LanguageModelEngine:
         
         return {tid: val / sum_exp for tid, val in exp_logits.items()}
 
-    def generate_next_token(self, context_ids: List[int], config: SamplingConfig) -> PredictionOutput:
+    def generate_next_token(self, context_ids: list[int], config: SamplingConfig) -> PredictionOutput:
         """Executes one autoregressive pass over truncated context."""
         # 1. Enforce Context Window Truncation
         active_context = self._truncate_context(context_ids, config.max_context_window)

@@ -1,5 +1,4 @@
 from dataclasses import dataclass, field
-from typing import List, Dict
 
 
 @dataclass
@@ -7,7 +6,7 @@ class TokenSequence:
     """Represents a tokenized text sequence with text-to-integer mappings."""
     
     raw_text: str
-    token_ids: List[int]
+    token_ids: list[int]
 
 
 @dataclass
@@ -25,5 +24,5 @@ class PredictionOutput:
     
     generated_token_id: int
     generated_text: str
-    probabilities: Dict[str, float]
-    active_context_ids: List[int]
+    probabilities: dict[str, float]
+    active_context_ids: list[int]
