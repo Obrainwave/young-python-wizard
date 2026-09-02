@@ -12,7 +12,7 @@ class LanguageModelEngine:
         
         # Transition probability matrix: P(Next_Token | Last_Token_ID)
         # Simulates pretrained attention weights
-        self._n_gram_weights: Dict[int, Dict[int, float]] = {
+        self._n_gram_weights: dict[int, dict[int, float]] = {
             2: {3: 4.0, 8: 1.0},        # "system" -> "status" (high), "error" (low)
             3: {4: 5.0},                 # "status" -> "is"
             4: {5: 4.0, 6: 2.0, 7: 1.0}, # "is" -> "nominal" (high), "degraded", "critical"
@@ -25,7 +25,7 @@ class LanguageModelEngine:
             return token_ids[-max_window:]
         return token_ids
 
-    def _compute_softmax(self, logits: Dict[int, float], temperature: float) -> Dict[int, float]:
+    def _compute_softmax(self, logits: dict[int, float], temperature: float) -> dict[int, float]:
         """Applies Temperature scaling and computes Softmax probabilities over logits."""
         # Avoid division by zero
         temp = max(temperature, 1e-5)
