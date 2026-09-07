@@ -1,0 +1,7 @@
+Machine learning is a subset of artificial intelligence that enables systems to learn from data and improve their performance over time without being explicitly programmed. It is divided into three main types: supervised learning, unsupervised learning, and reinforcement learning.
+
+In supervised learning, the model is trained on labeled data, where each example has an input and a corresponding output label. Common tasks include classification (predicting a category) and regression (predicting a continuous value). Algorithms such as linear regression, logistic regression, decision trees, and support vector machines are frequently used.
+
+Unsupervised learning deals with unlabeled data. The goal is to find hidden patterns or structures. Clustering (e.g., K-means) groups similar items together, while dimensionality reduction (e.g., PCA) simplifies data by reducing the number of features. Reinforcement learning involves an agent that learns by interacting with an environment and receiving rewards or penalties. It is used in robotics, game playing, and autonomous systems.
+
+Deep learning is a subset of machine learning that uses neural networks with many layers. These deep neural networks have achieved state-of-the-art results in image recognition, speech processing, and natural language understanding. Popular frameworks for deep learning include TensorFlow and PyTorch.

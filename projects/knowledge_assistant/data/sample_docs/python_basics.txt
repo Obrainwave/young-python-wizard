@@ -1,0 +1,5 @@
+Python is a high-level, interpreted programming language known for its readability and simplicity. It was created by Guido van Rossum and first released in 1991. Python supports multiple programming paradigms, including procedural, object-oriented, and functional programming.
+
+Variables in Python are dynamically typed, meaning you do not need to declare their type explicitly. For example, you can write x = 10 and later x = "hello". Python uses indentation to define code blocks instead of curly braces or keywords. A for loop in Python iterates over a sequence such as a list, tuple, or string. For instance, for i in range(5): print(i) will print numbers 0 through 4.
+
+Functions are defined using the def keyword. A simple function to add two numbers looks like: def add(a, b): return a + b. Python also has a rich standard library that includes modules for file I/O, regular expressions, and web services. Popular third-party libraries include NumPy for numerical computing, pandas for data analysis, and Flask for web development.

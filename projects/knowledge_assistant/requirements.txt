@@ -1,0 +1,10 @@
+# AI Knowledge Assistant dependencies
+# Required:
+sentence-transformers>=2.2.0
+numpy>=1.24.0
+
+# Optional for real LLM generation (if you have an OpenAI API key):
+openai>=1.0.0
+
+# If using a .env file for API key (recommended):
+python-dotenv>=1.0.0
