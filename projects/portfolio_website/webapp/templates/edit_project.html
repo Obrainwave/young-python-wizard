@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}{{ 'Edit Project' if project else 'Add Project' }}{% endblock %}
+{% block content %}
+<h1>{{ 'Edit Project' if project else 'Add Project' }}</h1>
+<form method="POST">
+    <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" name="title" value="{{ project.title if project else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" name="description" rows="4">{{ project.description if project else '' }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="image_url" class="form-label">Image Filename (in static/images/)</label>
+        <input type="text" class="form-control" id="image_url" name="image_url" value="{{ project.image_url if project else '' }}">
+    </div>
+    <div class="mb-3">
+        <label for="github_url" class="form-label">GitHub URL</label>
+        <input type="url" class="form-control" id="github_url" name="github_url" value="{{ project.github_url if project else '' }}">
+    </div>
+    <div class="mb-3">
+        <label for="live_url" class="form-label">Live Demo URL</label>
+        <input type="url" class="form-control" id="live_url" name="live_url" value="{{ project.live_url if project else '' }}">
+    </div>
+    <div class="mb-3">
+        <label for="date_created" class="form-label">Date (YYYY-MM-DD)</label>
+        <input type="date" class="form-control" id="date_created" name="date_created" value="{{ project.date_created if project else '' }}">
+    </div>
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="featured" name="featured" {{ 'checked' if project and project.featured else '' }}>
+        <label class="form-check-label" for="featured">Featured</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="{{ url_for('main.admin') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
