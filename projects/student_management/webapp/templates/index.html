@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="text-center py-5">
+    <h1 class="display-4">Student Management System</h1>
+    <p class="lead">Manage students, courses, and enrollments in one place.</p>
+    <div class="mt-4">
+        <a href="{{ url_for('main.list_students') }}" class="btn btn-primary btn-lg m-2">👨‍🎓 Students</a>
+        <a href="{{ url_for('main.list_courses') }}" class="btn btn-success btn-lg m-2">📚 Courses</a>
+        <a href="{{ url_for('main.list_enrollments') }}" class="btn btn-info btn-lg m-2">📝 Enrollments</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}{{ 'Edit Enrollment' if enrollment else 'Add Enrollment' }}{% endblock %}
+{% block content %}
+<h1>{{ 'Edit Enrollment' if enrollment else 'Add Enrollment' }}</h1>
+<form method="POST">
+    <div class="mb-3">
+        <label for="student_id" class="form-label">Student *</label>
+        <select class="form-select" id="student_id" name="student_id" required>
+            <option value="">Select Student</option>
+            {% for student in students %}
+            <option value="{{ student.id }}" {{ 'selected' if enrollment and enrollment['student_id'] == student.id else '' }}>
+                {{ student.name }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="course_id" class="form-label">Course *</label>
+        <select class="form-select" id="course_id" name="course_id" required>
+            <option value="">Select Course</option>
+            {% for course in courses %}
+            <option value="{{ course.id }}" {{ 'selected' if enrollment and enrollment['course_id'] == course.id else '' }}>
+                {{ course.title }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="grade" class="form-label">Grade</label>
+        <input type="text" class="form-control" id="grade" name="grade" value="{{ enrollment['grade'] if enrollment else '' }}" placeholder="e.g., A, B+, 85">
+    </div>
+    <div class="mb-3">
+        <label for="enrolled_on" class="form-label">Enrollment Date</label>
+        <input type="date" class="form-control" id="enrolled_on" name="enrolled_on" value="{{ enrollment['enrolled_on'] if enrollment else '' }}">
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="{{ url_for('main.list_enrollments') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

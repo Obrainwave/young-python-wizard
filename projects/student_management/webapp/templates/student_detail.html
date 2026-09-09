@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}{{ student.name }}{% endblock %}
+{% block content %}
+<h1>{{ student.name }}</h1>
+<p><strong>Email:</strong> {{ student.email or 'N/A' }}</p>
+<p><strong>Phone:</strong> {{ student.phone or 'N/A' }}</p>
+
+<h2 class="mt-4">Enrollments</h2>
+{% if enrollments %}
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Course</th>
+                <th>Grade</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for e in enrollments %}
+            <tr>
+                <td>{{ e['id'] }}</td>
+                <td>{{ e['course_title'] }}</td>
+                <td>{{ e['grade'] or 'N/A' }}</td>
+                <td>{{ e['enrolled_on'] or 'N/A' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p>No enrollments for this student.</p>
+{% endif %}
+
+<a href="{{ url_for('main.list_students') }}" class="btn btn-secondary mt-3">Back to Students</a>
+{% endblock %}

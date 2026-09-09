@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}{{ 'Edit Course' if course else 'Add Course' }}{% endblock %}
+{% block content %}
+<h1>{{ 'Edit Course' if course else 'Add Course' }}</h1>
+<form method="POST">
+    <div class="mb-3">
+        <label for="title" class="form-label">Title *</label>
+        <input type="text" class="form-control" id="title" name="title" value="{{ course.title if course else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" name="description" rows="3">{{ course.description if course else '' }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="credits" class="form-label">Credits</label>
+        <input type="number" class="form-control" id="credits" name="credits" value="{{ course.credits if course else 0 }}" min="0">
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="{{ url_for('main.list_courses') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

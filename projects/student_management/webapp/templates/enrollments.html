@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Enrollments{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Enrollments</h1>
+    <a href="{{ url_for('main.add_enrollment') }}" class="btn btn-primary">Add Enrollment</a>
+</div>
+
+{% if enrollments %}
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Student</th>
+                <th>Course</th>
+                <th>Grade</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for e in enrollments %}
+            <tr>
+                <td>{{ e['id'] }}</td>
+                <td>{{ e['student_name'] }}</td>
+                <td>{{ e['course_title'] }}</td>
+                <td>{{ e['grade'] or 'N/A' }}</td>
+                <td>{{ e['enrolled_on'] or 'N/A' }}</td>
+                <td>
+                    <a href="{{ url_for('main.edit_enrollment', enrollment_id=e['id']) }}" class="btn btn-sm btn-warning">Edit</a>
+                    <form action="{{ url_for('main.delete_enrollment', enrollment_id=e['id']) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this enrollment?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p>No enrollments found.</p>
+{% endif %}
+{% endblock %}

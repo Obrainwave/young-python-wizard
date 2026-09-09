@@ -1,0 +1,5 @@
+# Professional Portfolio Website dependencies
+Flask>=2.3.0
+
+# Optional: for loading environment variables (recommended for deployment)
+python-dotenv>=1.0.0
