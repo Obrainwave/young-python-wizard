@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}{{ 'Edit Quiz' if quiz else 'Add Quiz' }}{% endblock %}
+{% block content %}
+<h1>{{ 'Edit Quiz' if quiz else 'Add Quiz' }}</h1>
+<form method="POST">
+    <div class="mb-3">
+        <label for="title" class="form-label">Title *</label>
+        <input type="text" class="form-control" id="title" name="title"
+               value="{{ quiz.title if quiz else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" name="description" rows="3">{{ quiz.description if quiz else '' }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="{{ url_for('admin.dashboard') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

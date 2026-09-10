@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}{{ 'Edit Question' if question else 'Add Question' }}{% endblock %}
+{% block content %}
+<h1>{{ 'Edit Question' if question else 'Add Question' }}</h1>
+<p class="text-muted">Quiz: {{ quiz.title }}</p>
+
+<form method="POST">
+    <div class="mb-3">
+        <label for="text" class="form-label">Question Text *</label>
+        <input type="text" class="form-control" id="text" name="text"
+               value="{{ question.text if question else '' }}" required>
+    </div>
+
+    {% for i in range(4) %}
+    <div class="input-group mb-2">
+        <div class="input-group-text">
+            <input type="radio" name="correct_index" value="{{ i }}"
+                   {{ 'checked' if question and question.options[i].is_correct else ('' if question else ('checked' if i == 0 else '')) }}
+                   required>
+        </div>
+        <span class="input-group-text">Option {{ i + 1 }}</span>
+        <input type="text" class="form-control" name="option_{{ i }}"
+               value="{{ question.options[i].text if question else '' }}"
+               placeholder="Option {{ i + 1 }} text" required>
+    </div>
+    {% endfor %}
+
+    <p class="text-muted small">Select the radio button next to the correct option.</p>
+
+    <button type="submit" class="btn btn-primary">Save Question</button>
+    <a href="{{ url_for('admin.manage_questions', quiz_id=quiz.id) }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

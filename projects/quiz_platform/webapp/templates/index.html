@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="text-center py-5">
+    <h1 class="display-4">Welcome to the Quiz Platform</h1>
+    <p class="lead">Test your knowledge with our interactive quizzes!</p>
+    <a href="{{ url_for('main.quiz_list') }}" class="btn btn-primary btn-lg mt-3">Browse Quizzes</a>
+</div>
+
+<h2 class="mt-5">Recent Quizzes</h2>
+{% if quizzes %}
+<div class="row">
+    {% for quiz in quizzes[:3] %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ quiz.title }}</h5>
+                <p class="card-text">{{ quiz.description or 'No description.' }}</p>
+                <a href="{{ url_for('main.take_quiz', quiz_id=quiz.id) }}" class="btn btn-primary">Take Quiz</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No quizzes yet. Head to the Admin panel to create one!</p>
+{% endif %}
+{% endblock %}

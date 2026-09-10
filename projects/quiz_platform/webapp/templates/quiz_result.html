@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Result{% endblock %}
+{% block content %}
+<div class="text-center mb-4">
+    <h1>Quiz Complete!</h1>
+    <h3>{{ attempt.user_name }}, you scored {{ attempt.score }} / {{ attempt.total }}</h3>
+    {% set percent = (attempt.score / attempt.total * 100) | round(1) %}
+    <p class="fs-4">{{ percent }}%</p>
+    {% if percent >= 80 %}
+        <p class="text-success fs-5">Excellent work! 🎉</p>
+    {% elif percent >= 50 %}
+        <p class="text-warning fs-5">Good effort! 👍</p>
+    {% else %}
+        <p class="text-danger fs-5">Keep practicing! 💪</p>
+    {% endif %}
+</div>
+
+<h3 class="mt-5">Detailed Feedback</h3>
+{% for d in details %}
+<div class="card mb-3 {{ 'border-success' if d.is_correct else 'border-danger' }}">
+    <div class="card-body">
+        <h5 class="card-title">
+            {{ loop.index }}. {{ d.question.text }}
+            {% if d.is_correct %}
+            <span class="badge bg-success">Correct</span>
+            {% else %}
+            <span class="badge bg-danger">Incorrect</span>
+            {% endif %}
+        </h5>
+        <p class="mb-1">
+            <strong>Your answer:</strong>
+            {{ d.chosen.text if d.chosen else 'Not answered' }}
+        </p>
+        {% if not d.is_correct %}
+        <p class="mb-0">
+            <strong>Correct answer:</strong> {{ d.correct.text if d.correct else 'N/A' }}
+        </p>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+
+<div class="mt-4">
+    <a href="{{ url_for('main.take_quiz', quiz_id=quiz.id) }}" class="btn btn-primary">Try Again</a>
+    <a href="{{ url_for('main.leaderboard', quiz_id=quiz.id) }}" class="btn btn-outline-secondary">View Leaderboard</a>
+</div>
+{% endblock %}

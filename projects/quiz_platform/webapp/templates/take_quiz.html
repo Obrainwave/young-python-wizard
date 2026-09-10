@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}{{ quiz.title }}{% endblock %}
+{% block content %}
+<h1>{{ quiz.title }}</h1>
+<p>{{ quiz.description }}</p>
+<hr>
+
+<form method="POST">
+    <div class="mb-4">
+        <label for="user_name" class="form-label fw-bold">Your Name</label>
+        <input type="text" class="form-control" id="user_name" name="user_name" required>
+    </div>
+
+    {% for q in questions %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Question {{ loop.index }}: {{ q.text }}</h5>
+            {% for opt in q.options %}
+            <div class="form-check">
+                <input class="form-check-input" type="radio"
+                       name="q_{{ q.id }}" id="opt_{{ opt.id }}" value="{{ opt.id }}">
+                <label class="form-check-label" for="opt_{{ opt.id }}">{{ opt.text }}</label>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-success btn-lg">Submit Answers</button>
+    <a href="{{ url_for('main.quiz_list') }}" class="btn btn-secondary btn-lg">Cancel</a>
+</form>
+{% endblock %}
