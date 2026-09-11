@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}{{ 'Edit Account' if account else 'Add Account' }}{% endblock %}
+{% block content %}
+<h1>{{ 'Edit Account' if account else 'Add Account' }}</h1>
+<form method="POST">
+    <div class="mb-3">
+        <label for="name" class="form-label">Account Name *</label>
+        <input type="text" class="form-control" id="name" name="name"
+               value="{{ account.name if account else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="account_type" class="form-label">Type *</label>
+        <select class="form-select" id="account_type" name="account_type" required>
+            {% for opt in ['checking', 'savings', 'cash', 'credit'] %}
+            <option value="{{ opt }}"
+                {{ 'selected' if account and account.account_type == opt else '' }}>
+                {{ opt|capitalize }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="initial_balance" class="form-label">Initial Balance</label>
+        <input type="number" step="0.01" class="form-control" id="initial_balance" name="initial_balance"
+               value="{{ account.initial_balance if account else 0 }}">
+    </div>
+    <div class="mb-3">
+        <label for="currency" class="form-label">Currency</label>
+        <input type="text" class="form-control" id="currency" name="currency"
+               value="{{ account.currency if account else 'USD' }}" maxlength="3">
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="{{ url_for('accounts.list_accounts') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

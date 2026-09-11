@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}{{ 'Edit Category' if category else 'Add Category' }}{% endblock %}
+{% block content %}
+<h1>{{ 'Edit Category' if category else 'Add Category' }}</h1>
+<form method="POST">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name *</label>
+        <input type="text" class="form-control" id="name" name="name"
+               value="{{ category.name if category else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="type" class="form-label">Type *</label>
+        <select class="form-select" id="type" name="type" required>
+            <option value="income" {{ 'selected' if category and category.type == 'income' else '' }}>Income</option>
+            <option value="expense" {{ 'selected' if category and category.type == 'expense' else '' }}>Expense</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="color" class="form-label">Color</label>
+        <input type="color" class="form-control form-control-color" id="color" name="color"
+               value="{{ category.color if category else '#6c757d' }}">
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="{{ url_for('categories.list_categories') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

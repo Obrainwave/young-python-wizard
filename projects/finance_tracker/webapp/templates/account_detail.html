@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}{{ account.name }}{% endblock %}
+{% block content %}
+<h1>{{ account.name }}</h1>
+<p class="text-muted text-capitalize">{{ account.account_type }} · {{ account.currency }}</p>
+<h3>Current Balance: ${{ '%.2f'|format(balance) }}</h3>
+
+<h4 class="mt-4">Transactions</h4>
+{% if transactions %}
+<table class="table table-striped">
+    <thead>
+        <tr><th>Date</th><th>Category</th><th>Description</th><th class="text-end">Amount</th></tr>
+    </thead>
+    <tbody>
+        {% for t in transactions %}
+        <tr>
+            <td>{{ t['date'] }}</td>
+            <td>{% if t['category_name'] %}<span class="badge" style="background: {{ t['category_color'] }};">{{ t['category_name'] }}</span>{% else %}—{% endif %}</td>
+            <td>{{ t['description'] or '—' }}</td>
+            <td class="text-end {{ 'text-success' if t['type']=='income' else 'text-danger' }}">
+                {{ '+' if t['type']=='income' else '-' }}${{ '%.2f'|format(t['amount']) }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No transactions for this account yet.</p>
+{% endif %}
+
+<a href="{{ url_for('accounts.list_accounts') }}" class="btn btn-secondary mt-3">Back to Accounts</a>
+{% endblock %}
